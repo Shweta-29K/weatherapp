@@ -28,7 +28,7 @@ public class WeatherServiceImpl implements WeatherService {
 		Optional<WeatherForecast> weatherForecast = weatherRepository.getWeatherForecast(zipCode);
 		if (weatherForecast.isPresent()) {
 			List<Weather> filterWeatherList = weatherForecast.get().getData().stream()
-					.filter(Weather -> dateUtil.compareTwoDates(Weather.getTimestamp(), nextDay))
+					.filter(weather -> dateUtil.compareTwoDates(weather.getTimestamp(), nextDay))
 					.collect(Collectors.toList());
 			filterWeatherList.sort((Weather w1, Weather w2) -> Double.compare(Double.parseDouble(w1.getTemp()),
 					Double.parseDouble(w2.getTemp())));

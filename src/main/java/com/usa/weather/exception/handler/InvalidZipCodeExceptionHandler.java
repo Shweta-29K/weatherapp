@@ -9,15 +9,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import org.joda.time.LocalDateTime;
-
 @ControllerAdvice
 public class InvalidZipCodeExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(InvalidZipCodeException.class)
 	public ResponseEntity<ErrorResponse> handleInvalidPostalCode(Exception ex, WebRequest request) {
 		ErrorResponse errors = new ErrorResponse();
-		errors.setTimestamp(LocalDateTime.now());
 		errors.setError("No data found for given postal code.");
 		errors.setStatus(HttpStatus.NOT_FOUND.value());
 		return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);

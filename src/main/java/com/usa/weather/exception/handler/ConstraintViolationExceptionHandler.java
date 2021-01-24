@@ -2,7 +2,6 @@ package com.usa.weather.exception.handler;
 
 import javax.validation.ConstraintViolationException;
 
-import org.joda.time.LocalDateTime;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,7 +17,6 @@ public class ConstraintViolationExceptionHandler extends ResponseEntityException
 	@ExceptionHandler(ConstraintViolationException.class)
 	public ResponseEntity<ErrorResponse> handle(Exception ex, WebRequest request) {
 		ErrorResponse errors = new ErrorResponse();
-		errors.setTimestamp(LocalDateTime.now());
 		errors.setError("You have entered invalid zip code.");
 		errors.setStatus(HttpStatus.BAD_REQUEST.value());
 		return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);

@@ -24,7 +24,7 @@ import com.usa.weather.util.DateUtil;
 
 @ExtendWith(MockitoExtension.class)
 @WebMvcTest(controllers = WeatherController.class)
-public class WeatherControllerTest {
+class WeatherControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 
